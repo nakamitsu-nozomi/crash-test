@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import styles from './page.module.css'
 
-export default function Home() {
+export default async function Home() {
 
   const getGroupByID = async() => {
     return new Promise((resolve, reject) => setTimeout(reject, 500));
@@ -29,9 +29,8 @@ const getPostsOperations=async()=>{
   }
 }
 const beforeEnter=async ()=>{
-  console.log("test")
   let promises=[]
-    promises.push(getGroupByIDOperations(),await getPostsOperations().catch((e) => {
+    promises.push(getGroupByIDOperations(), await getPostsOperations().catch((e) => {
       // ignore
     }))
 
@@ -41,7 +40,7 @@ const beforeEnter=async ()=>{
       console.log("エラー")
     }
 }
-  beforeEnter();
+  await beforeEnter();
 
   return (
     <main className={styles.main}>
