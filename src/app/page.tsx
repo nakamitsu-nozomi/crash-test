@@ -28,9 +28,9 @@ const getPostsOperations=async()=>{
     throw e
   }
 }
-const beforeEnter=async ()=>{
   let promises=[]
-    promises.push(getGroupByIDOperations(), await getPostsOperations().catch((e) => {
+  console.log("aaa")
+    promises.push(getGroupByIDOperations(),  await getPostsOperations().catch((e) => {
       // ignore
     }))
 
@@ -39,8 +39,6 @@ const beforeEnter=async ()=>{
     } catch(e) {
       console.log("エラー")
     }
-}
-  await beforeEnter();
 
   return (
     <main className={styles.main}>
