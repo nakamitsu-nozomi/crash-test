@@ -2,6 +2,47 @@ import Image from 'next/image'
 import styles from './page.module.css'
 
 export default function Home() {
+
+  const getGroupByID = async() => {
+    return new Promise((resolve, reject) => setTimeout(reject, 500));
+  }
+
+
+const getPosts = async () => {
+  return new Promise((resolve, reject) => setTimeout(resolve, 50000));
+}
+
+const getGroupByIDOperations=async()=>{
+  try {
+    await getGroupByID()
+  }catch (e) {
+    throw e
+  }
+}
+
+const getPostsOperations=async()=>{
+  try {
+    await getPosts()
+  }catch (e) {
+    console.log("aaa",e)
+    throw e
+  }
+}
+const beforeEnter=async ()=>{
+  console.log("test")
+  let promises=[]
+    promises.push(getGroupByIDOperations(),await getPostsOperations().catch((e) => {
+      // ignore
+    }))
+
+    try {
+      await Promise.all(promises)
+    } catch(e) {
+      console.log("エラー")
+    }
+}
+  beforeEnter();
+
   return (
     <main className={styles.main}>
       <div className={styles.description}>
