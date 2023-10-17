@@ -41,7 +41,7 @@ const beforeEnter=async ()=>{
       console.log("エラー")
     }
 }
-  beforeEnter();
+  // beforeEnter();
 
   return (
     <main className={styles.main}>
